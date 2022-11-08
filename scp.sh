@@ -10,9 +10,17 @@ case $flag in
 		echo "[log] upload now..."
 		break;;
 	-d|--download)
+		file=$3
+		if [ -z "$3" ]
+                        then
+                        echo "[log] no filename"
+                        exit
+                fi
+		filename=$(basename $file)
 		echo "[log] start download"
-		scp root@81.68.219.195:/usr/wl1024/halo/* $DIR
+		scp root@81.68.219.195:/usr/wl1024/halo/$filename $DIR
 		echo "[log] end download"
+		exit
 		break;;
 	*)
 		echo "[log] nothing happened"
